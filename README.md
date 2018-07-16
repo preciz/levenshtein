@@ -13,7 +13,7 @@ by adding `levenshtein` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:levenshtein, "~> 0.1.0"}
+    {:levenshtein, "~> 0.2.0"}
   ]
 end
 ```
@@ -22,5 +22,9 @@ end
 
 ```elixir
 iex> Levenshtein.distance("this", "that")
+2
+
+# faster
+iex> Levenshtein.distance_cached("this", "that")
 2
 ```
