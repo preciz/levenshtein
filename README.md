@@ -1,10 +1,13 @@
 # Levenshtein
 
-**TODO: Add description**
+Elixir wrapper for levenshtein implementation in Erlang
+
+Credit: [http://rosettacode.org/wiki/Levenshtein_distance#Erlang](http://rosettacode.org/wiki/Levenshtein_distance#Erlang)
+
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+The package can be installed
 by adding `levenshtein` to your list of dependencies in `mix.exs`:
 
 ```elixir
@@ -15,7 +18,9 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/levenshtein](https://hexdocs.pm/levenshtein).
+## Usage
 
+```elixir
+iex> Levenshtein.distance("this", "that")
+2
+```
