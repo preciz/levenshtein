@@ -1,4 +1,13 @@
 defmodule Levenshtein do
+  @moduledoc """
+  For what is Levenshtein distance see:
+
+  [https://en.wikipedia.org/wiki/Levenshtein_distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
+  """
+
+  @doc """
+  Calculate Levenshtein distance between two words
+  """
   def distance(a, b) when is_binary(a) and is_binary(b) do
     distance(
       a |> String.to_charlist,
@@ -10,6 +19,9 @@ defmodule Levenshtein do
     :levenshtein.distance(a, b)
   end
 
+  @doc """
+  Calculate Levenshtein distance between two words
+  """
   def distance_cached(a, b) when is_binary(a) and is_binary(b) do
     distance(
       a |> String.to_charlist,
