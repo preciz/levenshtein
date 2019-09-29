@@ -23,7 +23,7 @@ defmodule Levenshtein do
   Calculate Levenshtein distance between two words
   """
   def distance_cached(a, b) when is_binary(a) and is_binary(b) do
-    distance(
+    distance_cached(
       a |> String.to_charlist,
       b |> String.to_charlist
     )
