@@ -6,8 +6,11 @@ defmodule Levenshtein do
   """
 
   @doc """
-  Calculate Levenshtein distance between two words
+  Calculates Levenshtein distance between two words
+
+  Returns a non negative integer.
   """
+  @spec distance(binary, binary) :: non_neg_integer
   def distance(a, b) when is_binary(a) and is_binary(b) do
     distance(
       a |> String.to_charlist,
@@ -20,8 +23,11 @@ defmodule Levenshtein do
   end
 
   @doc """
-  Calculate Levenshtein distance between two words
+  Calculates Levenshtein distance between two words
+
+  Returns a non negative integer.
   """
+  @spec distance_cached(binary, binary) :: non_neg_integer
   def distance_cached(a, b) when is_binary(a) and is_binary(b) do
     distance_cached(
       a |> String.to_charlist,
