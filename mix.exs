@@ -2,6 +2,7 @@ defmodule Levenshtein.MixProject do
   use Mix.Project
 
   @version "0.2.2"
+  @github "https://github.com/preciz/levenshtein"
 
   def project do
     [
@@ -10,7 +11,6 @@ defmodule Levenshtein.MixProject do
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      source_url: "https://github.com/preciz/levenshtein",
       name: "Levenshtein",
       docs: docs(),
       description: "Elixir wrapper of an Erlang Levenshtein distance implementation",
@@ -26,7 +26,7 @@ defmodule Levenshtein.MixProject do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.20.2", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.20.2", only: :docs}
     ]
   end
 
@@ -34,7 +34,7 @@ defmodule Levenshtein.MixProject do
     [
       maintainers: ["Barna Kovacs"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/preciz/levenshtein"}
+      links: %{"GitHub" => @github}
     ]
   end
 
@@ -42,7 +42,7 @@ defmodule Levenshtein.MixProject do
     [
       main: "Levenshtein",
       source_ref: "v#{@version}",
-      source_url: "https://github.com/preciz/levenshtein"
+      source_url: @github
     ]
   end
 end
