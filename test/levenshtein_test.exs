@@ -1,5 +1,6 @@
-defmodule SimilarityTest do
+defmodule LevenshteinTest do
   use ExUnit.Case
+  doctest Levenshtein
 
   test "distance" do
     assert Levenshtein.distance("", "") == 0

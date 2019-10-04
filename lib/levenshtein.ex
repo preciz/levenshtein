@@ -9,6 +9,10 @@ defmodule Levenshtein do
   Calculates Levenshtein distance between two words
 
   Returns a non negative integer.
+
+  ## Example:
+      iex> Levenshtein.distance("abb", "abba")
+      1
   """
   @spec distance(binary, binary) :: non_neg_integer
   def distance(a, b) when is_binary(a) and is_binary(b) do
@@ -26,6 +30,10 @@ defmodule Levenshtein do
   Calculates Levenshtein distance between two words
 
   Returns a non negative integer.
+
+  ## Example:
+      iex> Levenshtein.distance_cached("abb", "abba")
+      1
   """
   @spec distance_cached(binary, binary) :: non_neg_integer
   def distance_cached(a, b) when is_binary(a) and is_binary(b) do
