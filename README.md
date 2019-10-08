@@ -23,8 +23,6 @@ end
 ```elixir
 iex> Levenshtein.distance("this", "that")
 2
-
-# faster
-iex> Levenshtein.distance_cached("this", "that")
-2
+iex> Levenshtein.distance("kitten", "sitting")
+3
 ```

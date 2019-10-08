@@ -6,44 +6,55 @@ defmodule Levenshtein do
   """
 
   @doc """
-  Calculates Levenshtein distance between two words
+  Returns an integer representing Levenshtein distance between
+  `source` and `target`.
 
-  Returns a non negative integer.
+  Levenshtein distance between two words is the minimum number of
+  single-character edits (i.e. insertions, deletions or substitutions)
+  required to change one word into the other.
 
-  ## Example:
-      iex> Levenshtein.distance("abb", "abba")
-      1
+  The algorithm used is based on the [Wagner-Fisher iterative
+  implementation](http://en.wikipedia.org/wiki/Levenshtein_distance#Iterative_with_two_matrix_rows).
+
+  ## Examples
+
+      iex> Levenshtein.distance("kitten", "sitting")
+      3
   """
-  @spec distance(binary, binary) :: non_neg_integer
-  def distance(a, b) when is_binary(a) and is_binary(b) do
-    distance(
-      a |> String.to_charlist(),
-      b |> String.to_charlist()
-    )
+  @spec distance(String.t(), String.t()) :: non_neg_integer
+  def distance(source, target)
+
+  def distance(source, source), do: 0
+
+  def distance(source, <<>>), do: String.length(source)
+
+  def distance(<<>>, target), do: String.length(target)
+
+  def distance(source, target) do
+    source = String.graphemes(source)
+    target = String.graphemes(target)
+    distlist = 0..Kernel.length(target) |> Enum.to_list()
+    do_distance(source, target, distlist, 1)
   end
 
-  def distance(a, b) when is_list(a) and is_list(b) do
-    :levenshtein.distance(a, b)
+  defp do_distance([], _, distlist, _), do: List.last(distlist)
+
+  defp do_distance([src_hd | src_tl], target, distlist, step) do
+    distlist = distlist(target, distlist, src_hd, [step], step)
+    do_distance(src_tl, target, distlist, step + 1)
   end
 
-  @doc """
-  Calculates Levenshtein distance between two words
+  defp distlist([], _, _, new_distlist, _), do: Enum.reverse(new_distlist)
 
-  Returns a non negative integer.
-
-  ## Example:
-      iex> Levenshtein.distance_cached("abb", "abba")
-      1
-  """
-  @spec distance_cached(binary, binary) :: non_neg_integer
-  def distance_cached(a, b) when is_binary(a) and is_binary(b) do
-    distance_cached(
-      a |> String.to_charlist(),
-      b |> String.to_charlist()
-    )
-  end
-
-  def distance_cached(a, b) when is_list(a) and is_list(b) do
-    :levenshtein.distance_cached(a, b)
+  defp distlist(
+         [target_hd | target_tl],
+         [distlist_hd | distlist_tl],
+         grapheme,
+         new_distlist,
+         last_dist
+       ) do
+    diff = if target_hd != grapheme, do: 1, else: 0
+    min = min(min(last_dist + 1, hd(distlist_tl) + 1), distlist_hd + diff)
+    distlist(target_tl, distlist_tl, grapheme, [min | new_distlist], min)
   end
 end
