@@ -13,7 +13,7 @@ defmodule Levenshtein.MixProject do
       deps: deps(),
       name: "Levenshtein",
       docs: docs(),
-      description: "Elixir wrapper of an Erlang Levenshtein distance implementation",
+      description: "Levenshtein distance implementation in Elixir",
       package: package()
     ]
   end

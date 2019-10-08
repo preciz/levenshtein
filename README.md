@@ -1,9 +1,9 @@
 # Levenshtein
 
-Elixir wrapper for levenshtein implementation in Erlang
+Levenshtein implementation in Elixir.
 
-Credit: [http://rosettacode.org/wiki/Levenshtein_distance#Erlang](http://rosettacode.org/wiki/Levenshtein_distance#Erlang)
-
+Credits go to the Elixir language source code where it was removed from in 2015.
+[GitHub PR](https://github.com/elixir-lang/elixir/pull/3112/commits/b962ae3e5fda2fd5b1ca28a8aa307657d33e9101)
 
 ## Installation
 
