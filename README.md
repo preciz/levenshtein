@@ -21,8 +21,14 @@ end
 ## Usage
 
 ```elixir
+iex> Levenshtein.distance("same", "same")
+0
 iex> Levenshtein.distance("this", "that")
 2
 iex> Levenshtein.distance("kitten", "sitting")
 3
 ```
+
+## License
+
+Levenshtein is [MIT licensed](LICENSE).
