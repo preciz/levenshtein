@@ -1,5 +1,7 @@
 # Levenshtein
 
+[![Build Status](https://travis-ci.org/preciz/fast_ngram.svg?branch=master)](https://travis-ci.org/preciz/fast_ngram)
+
 Levenshtein distance implementation in Elixir.
 
 Credits go to the Elixir language source code where it was removed from in 2015:
