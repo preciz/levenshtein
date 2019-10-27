@@ -18,6 +18,8 @@ defmodule Levenshtein do
 
   ## Examples
 
+      iex> Levenshtein.distance("same", "same")
+      3
       iex> Levenshtein.distance("kitten", "sitting")
       3
   """
