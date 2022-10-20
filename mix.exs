@@ -26,7 +26,7 @@ defmodule Levenshtein.MixProject do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.28.2", only: :docs}
+      {:ex_doc, "~> 0.29.0", only: :docs}
     ]
   end
 
