@@ -1,6 +1,6 @@
 # Levenshtein
 
-[![Build Status](https://travis-ci.org/preciz/fast_ngram.svg?branch=master)](https://travis-ci.org/preciz/fast_ngram)
+[![test](https://github.com/preciz/levenshtein/actions/workflows/test.yml/badge.svg)](https://github.com/preciz/levenshtein/actions/workflows/test.yml)
 
 Levenshtein distance implementation in Elixir.
 
