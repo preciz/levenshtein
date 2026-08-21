@@ -42,7 +42,8 @@ defmodule Levenshtein.MixProject do
     [
       main: "Levenshtein",
       source_ref: "v#{@version}",
-      source_url: @github
+      source_url: @github,
+      extras: ["CHANGELOG.md"]
     ]
   end
 end
