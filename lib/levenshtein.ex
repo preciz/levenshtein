@@ -33,30 +33,79 @@ defmodule Levenshtein do
   def distance(<<>>, target), do: String.length(target)
 
   def distance(source, target) do
-    source = String.graphemes(source)
-    target = String.graphemes(target)
-    distlist = 0..Kernel.length(target) |> Enum.to_list()
-    do_distance(source, target, distlist, 1)
+    s = String.graphemes(source)
+    t = String.graphemes(target)
+    do_distance(s, t)
   end
 
-  defp do_distance([], _, distlist, _), do: List.last(distlist)
+  defp do_distance(s, t) do
+    case trim_prefix(s, t) do
+      {[], t} ->
+        length(t)
 
-  defp do_distance([src_hd | src_tl], target, distlist, step) do
-    distlist = distlist(target, distlist, src_hd, [step], step)
-    do_distance(src_tl, target, distlist, step + 1)
+      {s, []} ->
+        length(s)
+
+      {s, t} ->
+        s = :lists.reverse(s)
+        t = :lists.reverse(t)
+
+        case trim_prefix(s, t) do
+          {[], t} ->
+            length(t)
+
+          {s, []} ->
+            length(s)
+
+          {s, t} ->
+            {s, t, len_t} =
+              if length(s) < length(t) do
+                {t, s, length(s)}
+              else
+                {s, t, length(t)}
+              end
+
+            distlist = :lists.seq(0, len_t)
+            loop_rows(s, t, distlist, 1)
+        end
+    end
   end
 
-  defp distlist([], _, _, new_distlist, _), do: Enum.reverse(new_distlist)
+  defp trim_prefix([h | s], [h | t]), do: trim_prefix(s, t)
+  defp trim_prefix(s, t), do: {s, t}
 
-  defp distlist(
-         [target_hd | target_tl],
-         [distlist_hd | distlist_tl],
-         grapheme,
-         new_distlist,
-         last_dist
-       ) do
-    diff = if target_hd != grapheme, do: 1, else: 0
-    min = min(min(last_dist + 1, hd(distlist_tl) + 1), distlist_hd + diff)
-    distlist(target_tl, distlist_tl, grapheme, [min | new_distlist], min)
+  defp loop_rows([sh], target, distlist, step) do
+    loop_cols_last(target, distlist, sh, step)
+  end
+
+  defp loop_rows([sh | st], target, distlist, step) do
+    new_distlist = loop_cols(target, distlist, sh, [step], step)
+    loop_rows(st, target, new_distlist, step + 1)
+  end
+
+  defp loop_cols([], _, _, acc, _), do: :lists.reverse(acc)
+
+  defp loop_cols([th | tt], [dh | [da | _] = dt], ch, acc, last) do
+    val =
+      if th == ch do
+        dh
+      else
+        min(dh, min(last, da)) + 1
+      end
+
+    loop_cols(tt, dt, ch, [val | acc], val)
+  end
+
+  defp loop_cols_last([], _, _, last), do: last
+
+  defp loop_cols_last([th | tt], [dh | [da | _] = dt], ch, last) do
+    val =
+      if th == ch do
+        dh
+      else
+        min(dh, min(last, da)) + 1
+      end
+
+    loop_cols_last(tt, dt, ch, val)
   end
 end
