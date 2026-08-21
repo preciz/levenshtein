@@ -4,9 +4,6 @@
 
 Levenshtein distance implementation in Elixir.
 
-Credits go to the Elixir language source code where it was removed from in 2015:
-[GitHub PR](https://github.com/elixir-lang/elixir/pull/3112/commits/b962ae3e5fda2fd5b1ca28a8aa307657d33e9101).
-
 ## Installation
 
 The package can be installed
