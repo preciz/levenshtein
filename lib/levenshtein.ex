@@ -13,8 +13,8 @@ defmodule Levenshtein do
   single-character edits (i.e. insertions, deletions or substitutions)
   required to change one word into the other.
 
-  The algorithm used is based on the [Wagner-Fisher iterative
-  implementation](http://en.wikipedia.org/wiki/Levenshtein_distance#Iterative_with_two_matrix_rows).
+  The algorithm used is based on the [Wagner-Fischer iterative
+  implementation](https://en.wikipedia.org/wiki/Levenshtein_distance#Iterative_with_two_matrix_rows).
 
   ## Examples
 
@@ -23,7 +23,7 @@ defmodule Levenshtein do
       iex> Levenshtein.distance("kitten", "sitting")
       3
   """
-  @spec distance(String.t(), String.t()) :: non_neg_integer
+  @spec distance(String.t(), String.t()) :: non_neg_integer()
   def distance(source, target)
 
   def distance(source, source), do: 0
