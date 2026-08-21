@@ -6,13 +6,12 @@ Levenshtein distance implementation in Elixir.
 
 ## Installation
 
-The package can be installed
-by adding `levenshtein` to your list of dependencies in `mix.exs`:
+Add `levenshtein` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:levenshtein, "~> 0.3.0"}
+    {:levenshtein, "~> 1.0.0"}
   ]
 end
 ```

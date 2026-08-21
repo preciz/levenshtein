@@ -1,7 +1,7 @@
 defmodule Levenshtein.MixProject do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "1.0.0"
   @github "https://github.com/preciz/levenshtein"
 
   def project do
